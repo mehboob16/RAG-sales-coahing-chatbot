@@ -9,7 +9,7 @@ from langchain_community.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 
 # ===== CONFIG =====
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "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")
+OPENAI_API_KEY = st.secrets['OPENAI_API_KEY'] if "OPENAI_API_KEY" not in os.environ else os.environ["OPENAI_API_KEY"]
 PDF_FOLDER = "docs"        # change this to your local PDF file path
 PERSIST_DIR = "faiss_store"
 CHAT_MODEL_NAME = "gpt-4o-mini"

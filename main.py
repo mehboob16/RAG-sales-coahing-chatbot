@@ -7,9 +7,25 @@ from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # ===== CONFIG =====
-OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY", "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")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+if not OPENAI_API_KEY:
+    # Access st.secrets inside try/except because it raises if no secrets file exists locally
+    try:
+        OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+    except Exception:
+        OPENAI_API_KEY = None
+
+if not OPENAI_API_KEY:
+    st.error("OpenAI API key not found. Set OPENAI_API_KEY as an environment variable or add it to Streamlit secrets.")
+    st.stop()
+
 PDF_FOLDER = "docs"        # change this to your local PDF file path
 PERSIST_DIR = "faiss_store"
 CHAT_MODEL_NAME = "gpt-4o-mini"

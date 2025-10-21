@@ -5,3 +5,6 @@ pypdf
 openai
 tiktoken
 langchain-community
+scikit-learn
+numpy
+callbacks

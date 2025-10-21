@@ -157,11 +157,15 @@ Answer:"""
                     callback = StreamingCallback(response_container)
                     
                     t_llm = time.time()
-                    answer = llm.predict(prompt, callbacks=[callback])
+                    # Use .invoke() with a config for callbacks
+                    response = llm.invoke(prompt, config={"callbacks": [callback]})
+                    answer = response.content
                     llm_time = time.time() - t_llm
                 else:
                     t_llm = time.time()
-                    answer = llm.predict(prompt)
+                    # Use .invoke() and get the content from the response object
+                    response = llm.invoke(prompt)
+                    answer = response.content
                     llm_time = time.time() - t_llm
                     chat_container.chat_message("assistant").write(answer)
                 

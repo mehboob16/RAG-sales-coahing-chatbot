@@ -5,7 +5,7 @@ import pickle
 import os
 import joblib  # Add this import
 from sklearn.cluster import MiniBatchKMeans
-from langchain.vectorstores import FAISS as LangchainFAISS
+from langchain_community.vectorstores import FAISS as LangchainFAISS
 
 from config import (
     PERSIST_DIR, PDF_FOLDER, CHUNK_SIZE, CHUNK_OVERLAP, PERSIST_FILE, get_dynamic_settings

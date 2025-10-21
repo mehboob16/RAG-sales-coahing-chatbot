@@ -3,7 +3,7 @@ from langchain_community.chat_models import ChatOpenAI
 import os
 import hashlib
 import streamlit as st
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from utils import get_embeddings, load_pdfs_from_folder, load_pdfs_from_uploaded_files, custom_recursive_splitter
 
 
